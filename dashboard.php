@@ -13,6 +13,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Store</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
@@ -44,12 +45,49 @@ if (!isset($_SESSION['user'])) {
     <section class="hero">
         <div class="hero-container">
             <div class="hero-left">
-                <h1>Need it fresh, fast, and easy? Shop with us</h1>
-                <p>From farm-fresh produce to pantry must-haves—everything you need, delivered to your doorstep</p>
+                <h1>Experience curated organic essentials, delivered with care</h1>
+                <p>Explore rigorously sourced fruits, vegetables, and pantry staples prepared for same-day dispatch to protect peak freshness.</p>
                 <a href="products.php" class="btn-hero">Show Now <span>→</span></a>
             </div>
             <div class="hero-right">
-                <img src="images/vegetable.jpg" alt="Fresh Groceries">
+                <img src="images/vegetable.webp" alt="Fresh Groceries">
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Props Section -->
+    <section class="value-props" aria-label="Store benefits">
+        <div class="value-props-container">
+            <h2>Full Of Flavor, Not Bad Stuff</h2>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+                    </div>
+                    <h3>Certified Organic Harvest</h3>
+                    <p>Produce and pantry goods sourced from accredited organic farms with full traceability from field to shelf.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-cubes" aria-hidden="true"></i>
+                    </div>
+                    <h3>No Synthetic Additives</h3>
+                    <p>Formulated without artificial preservatives, dyes, or sweeteners to maintain the integrity of every ingredient.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-wheat-awn-circle-exclamation" aria-hidden="true"></i>
+                    </div>
+                    <h3>Allergen-Conscious Selection</h3>
+                    <p>Gluten-free and soy-free options chosen to accommodate common dietary preferences without compromising flavor.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
+                    </div>
+                    <h3>Ethically Raised Proteins</h3>
+                    <p>Animal products sourced from partners adhering to humane practices, free from growth hormones and routine antibiotics.</p>
+                </div>
             </div>
         </div>
     </section>
