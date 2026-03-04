@@ -20,8 +20,9 @@ if (
 $cartItems = $_SESSION['cart'] ?? [];
 $cartHasItems = !empty($cartItems);
 $cartTotal = 0;
-$selectedPaymentInput = $_POST['payment_method'] ?? $_GET['payment_method'] ?? 'cod';
+$selectedPaymentInput = $_POST['payment_method'] ?? $_GET['payment_method'] ?? ($_SESSION['selected_payment_method'] ?? 'cod');
 $selectedPayment = $selectedPaymentInput === 'gcash' ? 'gcash' : 'cod';
+$_SESSION['selected_payment_method'] = $selectedPayment;
 
 include 'header.php';
 ?>
@@ -121,8 +122,6 @@ include 'header.php';
                             </div>
                         </label>
                     </fieldset>
-
-                    <p class="summary-note">You can still review delivery details on the next step.</p>
                     <button class="btn-checkout" type="submit" name="place_order" value="1">Place Order</button>
                 </form>
             </aside>

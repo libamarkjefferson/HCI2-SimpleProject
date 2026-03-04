@@ -144,6 +144,26 @@ button:hover {
     font-weight: bold;
     color: #333;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-img {
+    height: 42px;
+    width: auto;
+    display: block;
+}
+
+.logo-img-secondary {
+    height: 30px;
+}
+
+.logo h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
 }
 
 /* Navigation links container */
@@ -397,12 +417,99 @@ button:hover {
 
 .hero-right img {
     width: 100%;
-    max-width: 600px;
-    max-height: 500px;
+    max-width: 720px;
+    max-height: 560px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
 }
+
+/* ========================================
+   CATEGORY SECTION - dashboard.php
+   ======================================== */
+
+.category-section {
+    background: linear-gradient(180deg, #f9f7ec 0%, #f3f7f0 100%);
+    padding: 50px 20px 60px;
+    margin-top: -20px;
+}
+
+.category-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.category-header h2 {
+    font-size: 2rem;
+    color: #23422e;
+    margin-bottom: 6px;
+}
+
+.category-subtitle {
+    color: #4b5b4c;
+    max-width: 640px;
+    line-height: 1.5;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.category-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(35, 66, 46, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+    border-color: rgba(35, 66, 46, 0.16);
+}
+
+.category-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #1f3b28;
+    font-size: 1.2rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.category-copy h3 {
+    color: #1f3b28;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.category-copy p {
+    color: #4b5b4c;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.soft-green { background: linear-gradient(135deg, #d9f4e0 0%, #bde8c5 100%); }
+.soft-orange { background: linear-gradient(135deg, #ffe7c5 0%, #ffd39a 100%); }
+.soft-pink { background: linear-gradient(135deg, #ffe1e4 0%, #ffcad3 100%); }
+.soft-lime { background: linear-gradient(135deg, #e5f9d4 0%, #c9f0a6 100%); }
+.soft-sun { background: linear-gradient(135deg, #ffeec2 0%, #ffd991 100%); }
+.soft-gold { background: linear-gradient(135deg, #f9edcc 0%, #f2d9a3 100%); }
+.soft-mint { background: linear-gradient(135deg, #e0f4ed 0%, #c6ebdb 100%); }
 
 /* ========================================
    VALUE PROPS SECTION - dashboard.php
@@ -445,6 +552,13 @@ button:hover {
     align-items: center;
     gap: 12px;
     text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+    border-color: rgba(35, 66, 46, 0.16);
 }
 
 .value-icon {

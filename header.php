@@ -15,7 +15,7 @@ if (!empty($_SESSION['cart'])) {
     }
 }
 ?>
-
+<link rel="icon" type="image/webp" href="images/favicon.webp">
 <header class="dashboard-navbar">
     <div class="navbar-container">
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -25,7 +25,10 @@ if (!empty($_SESSION['cart'])) {
             <span></span>
         </label>
         <div class="logo">
-            <a href="dashboard.php">Organic Store</a>
+            <a href="dashboard.php">
+                <img src="images/logo.jpg" alt="Organic Store logo" class="logo-img">
+                <img src="images/logo1.png" alt="Organic Store secondary logo" class="logo-img logo-img-secondary">
+            </a>
         </div>
         <nav class="nav-links">
             <a href="products.php">Products</a>

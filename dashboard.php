@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
     <title>Organic Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/webp" href="images/favicon.webp">
 </head>
 <body>
 
@@ -27,7 +27,10 @@ if (!isset($_SESSION['user'])) {
             <span></span>
         </label>
         <div class="logo">
-            <a href="dashboard.php">Organic Store</a>
+            <a href="dashboard.php">
+                <img src="images/logo.jpg" alt="Organic Store logo" class="logo-img">
+                <img src="images/logo1.png" alt="Organic Store secondary logo" class="logo-img logo-img-secondary">              
+            </a>
         </div>
         <nav class="nav-links">
             <a href="products.php">Products</a>
@@ -45,12 +48,52 @@ if (!isset($_SESSION['user'])) {
     <section class="hero">
         <div class="hero-container">
             <div class="hero-left">
-                <h1>Experience curated organic essentials, delivered with care</h1>
-                <p>Explore rigorously sourced fruits, vegetables, and pantry staples prepared for same-day dispatch to protect peak freshness.</p>
+                <h1>Discover farm-fresh goodness, thoughtfully packed for you.</h1>
+                <p>Shop premium organic produce, nutrient-rich staples, and clean-label favorites expertly handled to preserve quality and freshness.</p>
                 <a href="products.php" class="btn-hero">Show Now <span>→</span></a>
             </div>
             <div class="hero-right">
-                <img src="images/vegetable.webp" alt="Fresh Groceries">
+                <img src="images/veg.webp" alt="Fresh Groceries">
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories Section -->
+    <section class="category-section" aria-label="Popular categories">
+        <div class="category-container">
+            <div class="category-header">
+                <h2>Popular categories</h2>
+                <p class="category-subtitle">Fresh finds updated daily so you never miss your staples.</p>
+            </div>
+            <div class="category-grid">
+                <a class="category-card" href="products.php?category=vegetables">
+                    <span class="category-icon soft-green"><i class="fa-solid fa-carrot" aria-hidden="true"></i></span>
+                    <div class="category-copy">
+                        <h3>Vegetables</h3>
+                        <p>Leafy greens, roots, and everyday staples.</p>
+                    </div>
+                </a>
+                <a class="category-card" href="products.php?category=fruits">
+                    <span class="category-icon soft-orange"><i class="fa-solid fa-apple-whole" aria-hidden="true"></i></span>
+                    <div class="category-copy">
+                        <h3>Fruits</h3>
+                        <p>Seasonal picks and antioxidant powerhouses.</p>
+                    </div>
+                </a>
+                <a class="category-card" href="products.php?category=snacks">
+                    <span class="category-icon soft-pink"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></span>
+                    <div class="category-copy">
+                        <h3>Snacks</h3>
+                        <p>Cold-pressed blends for quick refreshment.</p>
+                    </div>
+                </a>
+                <a class="category-card" href="products.php?category=spreads">
+                    <span class="category-icon soft-lime"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i></span>
+                    <div class="category-copy">
+                        <h3>Spreads</h3>
+                        <p>Dry goods and staples with clean labels.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>

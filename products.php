@@ -4,6 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $cartMessage = '';
+$allowedCategories = ['all', 'vegetables', 'fruits', 'snacks', 'spreads'];
+$selectedCategory = 'all';
+if (isset($_GET['category']) && in_array($_GET['category'], $allowedCategories, true)) {
+    $selectedCategory = $_GET['category'];
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $id = (int)($_POST['product_id'] ?? 0);
@@ -42,8 +47,9 @@ include 'header.php';
     <title>Products | Organic Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/webp" href="images/favicon.webp">
 </head>
-<body>
+<body data-initial-category="<?php echo htmlspecialchars($selectedCategory); ?>">
 
 <main class="products-page">
     <div class="products-header">
@@ -62,11 +68,11 @@ include 'header.php';
         <div class="filter-group">
             <label for="filter-category">Category</label>
             <select id="filter-category">
-                <option value="all">All</option>
-                <option value="vegetables">Vegetables</option>
-                <option value="fruits">Fruits</option>
-                <option value="snacks">Snacks</option>
-                <option value="spreads">Spreads</option>
+                <option value="all" <?php echo $selectedCategory === 'all' ? 'selected' : ''; ?>>All</option>
+                <option value="vegetables" <?php echo $selectedCategory === 'vegetables' ? 'selected' : ''; ?>>Vegetables</option>
+                <option value="fruits" <?php echo $selectedCategory === 'fruits' ? 'selected' : ''; ?>>Fruits</option>
+                <option value="snacks" <?php echo $selectedCategory === 'snacks' ? 'selected' : ''; ?>>Snacks</option>
+                <option value="spreads" <?php echo $selectedCategory === 'spreads' ? 'selected' : ''; ?>>Spreads</option>
             </select>
         </div>
         <div class="filter-group">
@@ -291,6 +297,12 @@ include 'header.php';
     [categorySelect, priceSelect, sortSelect].forEach(select => {
         select.addEventListener('change', applyFilters);
     });
+
+    // Apply initial category from URL if present
+    const initialCategory = document.body.dataset.initialCategory;
+    if (initialCategory && categorySelect.querySelector(`option[value="${initialCategory}"]`)) {
+        categorySelect.value = initialCategory;
+    }
 
     applyFilters();
 })();
