@@ -16,5 +16,7 @@
     <p>You haven’t added any products to your wishlist yet.</p>
 </main>
 
+<?php include 'footer.php'; ?>
+
 </body>
 </html>

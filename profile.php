@@ -13,5 +13,7 @@
 
 <main class="profile-page" aria-label="Profile navigation only"></main>
 
+<?php include 'footer.php'; ?>
+
 </body>
 </html>

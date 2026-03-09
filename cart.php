@@ -149,5 +149,7 @@ include 'header.php';
     <?php endif; ?>
 </main>
 
+<?php include 'footer.php'; ?>
+
 </body>
 </html>

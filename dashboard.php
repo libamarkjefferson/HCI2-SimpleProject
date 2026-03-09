@@ -144,5 +144,7 @@ if (!isset($_SESSION['user'])) {
 
 </main>
 
+<?php include 'footer.php'; ?>
+
 </body>
 </html>
