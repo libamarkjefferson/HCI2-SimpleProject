@@ -10,7 +10,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($email === $demo_email && $password === $demo_password){
 
-        $_SESSION['user'] = $email;
+        $_SESSION['user'] = [
+            'email' => $email,
+            'fullname' => 'John Doe',
+            'phone' => '09123456789',
+            'address' => 'Manila, Philippines'
+        ];
 
         header("Location: dashboard.php");
         exit();
@@ -25,12 +30,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login | My Ecommerce</title>
+    <title> Login </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/webp" href="images/favicon.webp">
 </head>
 <body>
 
     <div class="login-container">
+        <img src="images/logo.jpg" alt="Organic Store logo" class="login-logo">
         <h2>Login</h2>
         <p class="subtitle">Enter your credentials to access your account</p>
 
