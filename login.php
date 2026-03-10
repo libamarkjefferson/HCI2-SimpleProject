@@ -10,7 +10,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($email === $demo_email && $password === $demo_password){
 
-        $_SESSION['user'] = $email;
+        $_SESSION['user'] = [
+            'email' => $email,
+            'fullname' => 'John Doe',
+            'phone' => '09123456789',
+            'address' => 'Manila, Philippines'
+        ];
 
         header("Location: dashboard.php");
         exit();
