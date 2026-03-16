@@ -60,23 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id']) && !iss
     $image = trim($_POST['product_image'] ?? '');
     $quantity = max(1, (int)($_POST['quantity'] ?? 1));
 
-    $selectedItem = [
-        'id' => $id,
-        'name' => $name,
-        'price' => $price,
-        'image' => $image,
-        'quantity' => $quantity,
-    ];
-
-    if (isset($_POST['buy_now'])) {
-        $_SESSION['cart'] = [
-            $id => $selectedItem,
-        ];
-
-        header('Location: checkout.php');
-        exit;
-    }
-
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
@@ -84,7 +67,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id']) && !iss
     if (isset($_SESSION['cart'][$id])) {
         $_SESSION['cart'][$id]['quantity'] += $quantity;
     } else {
-        $_SESSION['cart'][$id] = $selectedItem;
+        $_SESSION['cart'][$id] = [
+            'id' => $id,
+            'name' => $name,
+            'price' => $price,
+            'image' => $image,
+            'quantity' => $quantity,
+        ];
+    }
+
+    $isBuyNow = isset($_POST['buy_now']);
+    if ($isBuyNow) {
+        header('Location: checkout.php');
+        exit();
     }
 
     $cartMessage = $name !== '' ? $name . ' added to cart.' : 'Item added to cart.';
@@ -175,14 +170,16 @@ include 'header.php';
             <h3>Fresh Vegetables Box</h3>
             <p class="price">₱450.00</p>
             <p class="description">Farm-fresh seasonal vegetables delivered daily</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="1">
                 <input type="hidden" name="product_name" value="Fresh Vegetables Box">
                 <input type="hidden" name="product_price" value="450">
                 <input type="hidden" name="product_image" value="images/vegetable.jpg">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -203,14 +200,16 @@ include 'header.php';
             <h3>Fresh Strawberries</h3>
             <p class="price">₱380.00</p>
             <p class="description">Sweet and juicy organic strawberries</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="2">
                 <input type="hidden" name="product_name" value="Fresh Strawberries">
                 <input type="hidden" name="product_price" value="380">
                 <input type="hidden" name="product_image" value="images/strawberry.jpg">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -231,14 +230,16 @@ include 'header.php';
             <h3>Fresh Cucumber</h3>
             <p class="price">₱150.00</p>
             <p class="description">Crisp and refreshing organic cucumbers</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="3">
                 <input type="hidden" name="product_name" value="Fresh Cucumber">
                 <input type="hidden" name="product_price" value="150">
                 <input type="hidden" name="product_image" value="images/freshcucumber.jpg">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -259,14 +260,16 @@ include 'header.php';
             <h3>Organic Potatoes</h3>
             <p class="price">₱200.00</p>
             <p class="description">Fresh farm potatoes perfect for any meal</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="4">
                 <input type="hidden" name="product_name" value="Organic Potatoes">
                 <input type="hidden" name="product_price" value="200">
                 <input type="hidden" name="product_image" value="images/potato.jpg">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -287,14 +290,16 @@ include 'header.php';
             <h3>Dried Mango</h3>
             <p class="price">₱320.00</p>
             <p class="description">Sweet and chewy organic dried mango slices</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="5">
                 <input type="hidden" name="product_name" value="Dried Mango">
                 <input type="hidden" name="product_price" value="320">
                 <input type="hidden" name="product_image" value="images/driedmango.webp">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -304,14 +309,16 @@ include 'header.php';
             <h3>Guava Jam</h3>
             <p class="price">₱280.00</p>
             <p class="description">Homemade organic guava jam, no preservatives</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="6">
                 <input type="hidden" name="product_name" value="Guava Jam">
                 <input type="hidden" name="product_price" value="280">
                 <input type="hidden" name="product_image" value="images/guava jam.jpg">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -321,14 +328,16 @@ include 'header.php';
             <h3>Kamote Chips</h3>
             <p class="price">₱250.00</p>
             <p class="description">Crispy baked sweet potato chips lightly salted</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="7">
                 <input type="hidden" name="product_name" value="Kamote Chips">
                 <input type="hidden" name="product_price" value="250">
                 <input type="hidden" name="product_image" value="images/kamotechips.webp">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -338,14 +347,16 @@ include 'header.php';
             <h3>Fresh Mangoes</h3>
             <p class="price">₱300.00</p>
             <p class="description">Sweet ripe mangoes harvested at peak flavor</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="8">
                 <input type="hidden" name="product_name" value="Fresh Mangoes">
                 <input type="hidden" name="product_price" value="300">
                 <input type="hidden" name="product_image" value="images/mango.avif">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
 
@@ -355,14 +366,16 @@ include 'header.php';
             <h3>Strawberry Jam</h3>
             <p class="price">₱320.00</p>
             <p class="description">Small-batch strawberry jam made with ripe berries</p>
-            <form method="post" action="products.php" class="product-actions" onclick="event.stopPropagation();">
+            <form method="post" action="products.php" onclick="event.stopPropagation();">
                 <input type="hidden" name="product_id" value="9">
                 <input type="hidden" name="product_name" value="Strawberry Jam">
                 <input type="hidden" name="product_price" value="320">
                 <input type="hidden" name="product_image" value="images/strawberryjam.jpg">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" name="add_to_cart" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
-                <button type="submit" name="buy_now" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                <div class="product-actions">
+                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                </div>
             </form>
         </div>
     </div>
@@ -399,10 +412,10 @@ include 'header.php';
                                 </div>
                             </div>
                             <div class="modal-submit-buttons">
-                                <button type="submit" name="add_to_cart" class="btn-modal-cart">
+                                <button type="submit" class="btn-modal-cart">
                                     <i class="fa-solid fa-cart-plus"></i> Add to Cart
                                 </button>
-                                <button type="submit" name="buy_now" class="btn-modal-buy-now">
+                                <button type="submit" name="buy_now" value="1" class="btn-modal-buy-now">
                                     <i class="fa-solid fa-bag-shopping"></i> Buy Now
                                 </button>
                             </div>

@@ -29,6 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         ];
     }
 
+    $isBuyNow = isset($_POST['buy_now']);
+    if ($isBuyNow) {
+        header('Location: checkout.php');
+        exit();
+    }
+
     $cartMessage = $name !== '' ? $name . ' added to cart.' : 'Item added to cart.';
 }
 
@@ -189,7 +195,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                     <input type="hidden" name="product_price" value="450">
                     <input type="hidden" name="product_image" value="images/vegetable.jpg">
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <div class="product-actions">
+                        <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                        <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                    </div>
                 </form>
             </div>
 
@@ -205,7 +214,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                     <input type="hidden" name="product_price" value="380">
                     <input type="hidden" name="product_image" value="images/strawberry.jpg">
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <div class="product-actions">
+                        <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                        <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                    </div>
                 </form>
             </div>
 
@@ -221,7 +233,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                     <input type="hidden" name="product_price" value="150">
                     <input type="hidden" name="product_image" value="images/freshcucumber.jpg">
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <div class="product-actions">
+                        <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                        <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                    </div>
                 </form>
             </div>
                 
@@ -237,7 +252,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                     <input type="hidden" name="product_price" value="280">
                     <input type="hidden" name="product_image" value="images/driedmango.jpg">
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <div class="product-actions">
+                        <button type="submit" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                        <button type="submit" name="buy_now" value="1" class="btn-buy-now"><i class="fa-solid fa-bag-shopping"></i> Buy Now</button>
+                    </div>
                 </form>
             </div>
         </div>
